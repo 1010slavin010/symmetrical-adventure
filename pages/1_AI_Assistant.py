@@ -10,7 +10,11 @@ with st.sidebar:
 topnav("ai")
 
 st.title("🤖 AI Assistant")
-st.caption("Ask about watering, pests, disease, weather risk, or fertilizer. Running on a built-in FAQ until an LLM API key is added — see utils/ai_agent.py for how to turn that on.")
+st.caption(
+    "Ask about watering, pests, disease, weather risk, or fertilizer. "
+    "Running on a built-in FAQ until an LLM API key is added — see "
+    "utils/ai_agent.py for how to turn that on."
+)
 
 if "chat_history" not in st.session_state:
     st.session_state["chat_history"] = []
@@ -24,7 +28,9 @@ if question:
     st.session_state["chat_history"].append({"role": "user", "content": question})
     with st.chat_message("user"):
         st.markdown(question)
+
     answer = ai_reply(question, history=st.session_state["chat_history"][:-1])
+
     st.session_state["chat_history"].append({"role": "assistant", "content": answer})
     with st.chat_message("assistant"):
         st.markdown(answer)
